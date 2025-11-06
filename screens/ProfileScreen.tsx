@@ -36,42 +36,42 @@ const ProfileScreen = ({navigation}: Props) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView testID="profile-screen" style={styles.container}>
       <View style={styles.header}>
         <View style={styles.avatarContainer}>
-          <View style={styles.avatar}>
+          <View testID="profile-avatar" style={styles.avatar}>
             <Text style={styles.avatarText}>
               {user?.name?.charAt(0).toUpperCase() || 'U'}
             </Text>
           </View>
         </View>
-        <Text style={styles.name}>{user?.name}</Text>
-        <Text style={styles.email}>{user?.email}</Text>
+        <Text testID="profile-name" style={styles.name}>{user?.name}</Text>
+        <Text testID="profile-email" style={styles.email}>{user?.email}</Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Profile Information</Text>
+        <Text testID="profile-info-title" style={styles.sectionTitle}>Profile Information</Text>
         {profileInfo.map((info, index) => (
-          <View key={index} style={styles.infoRow}>
-            <Text style={styles.infoLabel}>{info.label}</Text>
-            <Text style={styles.infoValue}>{info.value}</Text>
+          <View key={index} testID={`profile-info-row-${index}`} style={styles.infoRow}>
+            <Text testID={`profile-info-label-${index}`} style={styles.infoLabel}>{info.label}</Text>
+            <Text testID={`profile-info-value-${index}`} style={styles.infoValue}>{info.value}</Text>
           </View>
         ))}
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Statistics</Text>
+        <Text testID="profile-stats-title" style={styles.sectionTitle}>Statistics</Text>
         <View style={styles.statsRow}>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>156</Text>
+          <View testID="profile-stat-orders" style={styles.statItem}>
+            <Text testID="profile-stat-orders-value" style={styles.statValue}>156</Text>
             <Text style={styles.statLabel}>Orders</Text>
           </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>$12,345</Text>
+          <View testID="profile-stat-spent" style={styles.statItem}>
+            <Text testID="profile-stat-spent-value" style={styles.statValue}>$12,345</Text>
             <Text style={styles.statLabel}>Spent</Text>
           </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>4.8</Text>
+          <View testID="profile-stat-rating" style={styles.statItem}>
+            <Text testID="profile-stat-rating-value" style={styles.statValue}>4.8</Text>
             <Text style={styles.statLabel}>Rating</Text>
           </View>
         </View>
@@ -79,12 +79,13 @@ const ProfileScreen = ({navigation}: Props) => {
 
       <View style={styles.section}>
         <TouchableOpacity
+          testID="profile-back-button"
           style={styles.actionButton}
           onPress={() => navigation.navigate('Dashboard')}>
           <Text style={styles.actionButtonText}>Back to Dashboard</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <TouchableOpacity testID="profile-logout-button" style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>

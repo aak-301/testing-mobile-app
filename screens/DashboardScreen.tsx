@@ -66,40 +66,41 @@ const DashboardScreen = ({navigation}: Props) => {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView testID="dashboard-screen" style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.greeting}>Hello, {user?.name}!</Text>
-        <Text style={styles.subtitle}>Here's what's happening today</Text>
+        <Text testID="dashboard-greeting" style={styles.greeting}>Hello, {user?.name}!</Text>
+        <Text testID="dashboard-subtitle" style={styles.subtitle}>Here's what's happening today</Text>
       </View>
 
       <View style={styles.statsContainer}>
         {stats.map(stat => (
-          <View key={stat.id} style={styles.statCard}>
-            <Text style={styles.statTitle}>{stat.title}</Text>
-            <Text style={[styles.statValue, {color: stat.color}]}>
+          <View key={stat.id} testID={`dashboard-stat-${stat.id}`} style={styles.statCard}>
+            <Text testID={`dashboard-stat-title-${stat.id}`} style={styles.statTitle}>{stat.title}</Text>
+            <Text testID={`dashboard-stat-value-${stat.id}`} style={[styles.statValue, {color: stat.color}]}>
               {stat.value}
             </Text>
-            <Text style={styles.statChange}>{stat.change}</Text>
+            <Text testID={`dashboard-stat-change-${stat.id}`} style={styles.statChange}>{stat.change}</Text>
           </View>
         ))}
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Recent Activity</Text>
+        <Text testID="dashboard-activity-title" style={styles.sectionTitle}>Recent Activity</Text>
         {recentActivities.map(activity => (
-          <View key={activity.id} style={styles.activityCard}>
+          <View key={activity.id} testID={`dashboard-activity-${activity.id}`} style={styles.activityCard}>
             <View style={styles.activityContent}>
-              <Text style={styles.activityTitle}>{activity.title}</Text>
-              <Text style={styles.activityDescription}>
+              <Text testID={`dashboard-activity-title-${activity.id}`} style={styles.activityTitle}>{activity.title}</Text>
+              <Text testID={`dashboard-activity-description-${activity.id}`} style={styles.activityDescription}>
                 {activity.description}
               </Text>
-              <Text style={styles.activityTime}>{activity.time}</Text>
+              <Text testID={`dashboard-activity-time-${activity.id}`} style={styles.activityTime}>{activity.time}</Text>
             </View>
           </View>
         ))}
       </View>
 
       <TouchableOpacity
+        testID="dashboard-profile-button"
         style={styles.profileButton}
         onPress={() => navigation.navigate('Profile')}>
         <Text style={styles.profileButtonText}>View Profile</Text>

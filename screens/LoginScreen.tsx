@@ -32,13 +32,14 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID="login-screen" style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Welcome Back</Text>
-        <Text style={styles.subtitle}>Sign in to continue</Text>
+        <Text testID="login-title" style={styles.title}>Welcome Back</Text>
+        <Text testID="login-subtitle" style={styles.subtitle}>Sign in to continue</Text>
 
         <View style={styles.form}>
           <TextInput
+            testID="login-email-input"
             style={styles.input}
             placeholder="Email"
             placeholderTextColor="#999"
@@ -50,6 +51,7 @@ const LoginScreen = () => {
           />
 
           <TextInput
+            testID="login-password-input"
             style={styles.input}
             placeholder="Password"
             placeholderTextColor="#999"
@@ -61,11 +63,12 @@ const LoginScreen = () => {
           />
 
           <TouchableOpacity
+            testID="login-button"
             style={[styles.button, loading && styles.buttonDisabled]}
             onPress={handleLogin}
             disabled={loading}>
             {loading ? (
-              <ActivityIndicator color="#fff" />
+              <ActivityIndicator testID="login-loading" color="#fff" />
             ) : (
               <Text style={styles.buttonText}>Sign In</Text>
             )}
