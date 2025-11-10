@@ -84,6 +84,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "com.wix.detox.DetoxJUnitRunner"
     }
     signingConfigs {
         debug {
@@ -105,6 +106,13 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    testOptions {
+        animationsDisabled true
+    }
+
+    packagingOptions {
+        pickFirst("**/*.so")
+    }
 }
 
 dependencies {
@@ -116,4 +124,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    androidTestCompileOnly(project(path: ":detox", configuration: "fullDebugApiElements"))
+    androidTestImplementation(project(path: ":detox", configuration: "fullDebugRuntimeElements"))
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
 }
