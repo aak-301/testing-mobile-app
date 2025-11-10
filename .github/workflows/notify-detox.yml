@@ -1,0 +1,23 @@
+name: Notify Detox Tester
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dispatch-detox:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Detox tests
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.DETOX_TRIGGER_TOKEN }}
+          repository: aak-301/Detox-Tester
+          event-type: app-updated
+          client-payload: |
+            {
+              "commit": "${{ github.sha }}",
+              "branch": "${{ github.ref_name }}"
+            }
+
